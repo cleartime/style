@@ -62,3 +62,27 @@ class Stack{
 	}	
 }
 
+
+/**
+ * 十进制转化二进制
+ * @param  {[type]} num [description]
+ * @return {[type]}     [description]
+ */
+function tenTotwo(num){
+	let items = [];
+	let rem = '';
+	let newnum = '';
+	while(num>0){
+		rem = Math.floor(num%2);
+		items.push(rem)
+		num = Math.floor(num/2)
+	}
+	while(items.length){
+		newnum+=items.pop().toString();
+	}
+
+	return newnum
+}
+
+console.log(tenTotwo(123))
+
