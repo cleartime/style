@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>二叉搜索树BST</title>
+</head>
+<body>
+	<script type="text/javascript">
+		
+		function BinarySearchTree(){
+			var Node = function(key){
+				this.key = key;
+				this.left = null;
+				this.right = null;
+			}
+
+			var root = null;
+
+			this.insert = function(key){
+				var newNode = new Node(key);
+				if(root === null){
+					root = newNode;
+				}else{
+					insertNode(newNode, root)
+					// 拿插入的key和传入的node.key对比;
+					// 如果插入的key小于我传入的值，表示再左边
+					// 再判断左边这个有没有值，没有则直接代替他。
+					// 有的继续递归往下判断
+					var insertNode = function(newNode, node){
+						if(newNode.key < node.key){
+							if(node.left === null){
+								node = newNode;
+							}else{
+								insertNode(newNode, node.left)
+							}
+						}else{
+							if(node.right === null){
+								node = newNode;
+							}else{
+								insertNode(newNode, node.right)
+							}
+						}
+					}
+				}
+			}
+		}
+	</script>
+</body>
+</html>

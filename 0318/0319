@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<script type="text/javascript">
+		/**
+		 * 散列表
+		 * @return {[type]} [description]
+		 */
+		function HashTable(){
+			let table = []; 
+			//此函数把每个单词转化成ASCLL码，最终相加的数值
+			//这种实现方式会有冲突
+			let losseloseHashCode = function(key){
+				let hash = 0;
+				for(let i = 0,len = key.length; i < len; i++){
+					hash += key.charCodeAt(i);
+				}
+				return hash %37
+			}
+			//这种没有冲突
+			let djb2HashCode = function(key){
+				let hash = 5381;
+				for(let i=0,len<key.length;i<len;i++){
+					hash = hash * 33 +key.charCodeAt();
+				}
+				return hash % 1013;
+			}
+			/**
+			 * 添加
+			 * @param  {[type]} key [description]
+			 * @param  {[type]} val [description]
+			 * @return {[type]}     [description]
+			 */
+			this.put = function(key, val){
+				let position = losseloseHashCode(key);
+				console.log('当前的位置是'+position);
+				table[position] = val;
+			}
+			/**
+			 * 获取
+			 * @param  {[type]} key [description]
+			 * @return {[type]}     [description]
+			 */
+			this.get = function(key){
+				let position = losseloseHashCode(key);
+				return table[position]
+			}
+			/**
+			 * 移除
+			 * @param  {[type]} key [description]
+			 * @return {[type]}     [description]
+			 */
+			this.remove = function(key){
+				let position = losseloseHashCode(key);
+				table[position] = undefined;
+			}
+		}	
+
+
+
+		let hash = new HashTable()
+
+		hash.put('Gandalf','gandalf@email.com');
+		hash.put('John','johnsnow@email.com');
+		hash.put('Tyrion','tyrion@email.com');
+		console.log(hash.get('Gandalf'));
+		console.log(hash.get('Loiane'));
+		hash.remove('Gandalf');
+		console.log(hash.get('Gandalf'))
+	</script>
+</body>	
+</html>
