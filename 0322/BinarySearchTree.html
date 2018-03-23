@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>二叉搜索树BST</title>
+</head>
+<body>
+	<script type="text/javascript">
+		
+		function BinarySearchTree(){
+			var Node = function(key){
+				this.key = key;
+				this.left = null;
+				this.right = null;
+			}
+
+			var root = null;
+
+			this.insert = function(key){
+				var newNode = new Node(key);
+				if(root === null){
+					root = newNode;
+				}else{
+					insertNode(newNode, root)
+					// 拿插入的key和传入的node.key对比;
+					// 如果插入的key小于我传入的值，表示再左边
+					// 再判断左边这个有没有值，没有则直接代替他。
+					// 有的继续递归往下判断
+					var insertNode = function(newNode, node){
+						if(newNode.key < node.key){
+							if(node.left === null){
+								node = newNode;
+							}else{
+								insertNode(newNode, node.left)
+							}
+						}else{
+							if(node.right === null){
+								node = newNode;
+							}else{
+								insertNode(newNode, node.right)
+							}
+						}
+					}
+				}
+			}
+
+			// 中序遍历
+			// 从小到大的去遍历
+			this.inOrderTraverse = function(cb){
+
+				// 辅助函数
+				// 如果node没有节点了，结束
+				// 否则递归左右子节点，回调做操作 							{2}{1}{3}
+				var inOrderTraverseNode = function(node, cb){
+					if(node !== null){
+						inOrderTraverseNode(node.left,cb);  			// {2}
+						cb(node.key)									// {1}
+						inOrderTraverseNode(node.right,cb)				// {3}
+					}
+				}
+				inOrderTraverseNode(root, cb);
+			}
+
+			// 先序遍历
+			// 从上往下，从左到右											{1}{2}{3}	
+			this.preOrderTraverse = function(cb){
+				var preOrderTraverseNode = function(node, cb){
+					if(node !== null){
+						cb(node.key)									// {1}
+						preOrderTraverseNode(node.left,cb);				// {2}
+						preOrderTraverseNode(node.right,cb)				// {3}
+					}
+				}
+				preOrderTraverseNode(root, cb);
+			}
+
+
+			// 后序遍历
+			// 先访问后代节点，再访问节点本身								{2}{3}{1}	
+			this.postOrderTraverse = function(cb){
+				var postOrderTraverseNode = function(node, cb){
+					if(node !== null){
+						postOrderTraverseNode(node.left,cb);			// {2}
+						postOrderTraverseNode(node.right,cb)			// {3}
+						cb(node.key)									// {1}
+					}
+				}
+				postOrderTraverseNode(root, cb);
+			}
+			// 总结一下 ，把父节点遍历当做第一步，之后左节点遍历第二步，最后右节点遍历第三步
+			// 在这样的情况下，先序遍历{1}{2}{3},中序遍历{2}{1}{3},后序遍历{2}{3}{1}
+
+
+
+
+			// 搜索最小值
+			// 只需要找到左边最后一个字节点既为最小值
+			this.searchMin = function(){
+				// 辅助函数，循环到node.left没有值的时候，则表示这个node是最后一个值了，返回这个值就行了
+				var minNode = function(node){
+					if(node){
+						while(node && node.left !== null){
+							node = node.left;
+						}
+						return node.key
+					}
+					return null
+				};
+				return minNode(root);
+			}
+
+
+			// 搜索最大值
+			// 只需要找到右边最后一个字节点既为最小值
+			this.searchMin = function(){
+				// 辅助函数，循环到node.right没有值的时候，则表示这个node是最后一个值了，返回这个值就行了
+				var minNode = function(node){
+					if(node){
+						while(node && node.right !== null){
+							node = node.right;
+						}
+						return node.key
+					}
+					return null
+				};
+				return minNode(root);
+			}
+
+
+			// 搜索值，
+			// 和传入的值做判断，如果当前值比传入的值大，就需要往左子节点去找，反之往右子节点去找。
+			this.search = function(key){
+				var searchNode = function(node, key){
+					if(node == null){
+						return false 
+					}else if(key < node.key){
+						node = node.left;
+						return searchNode(node, key);
+					}else if(key > node.key){
+						node = node.right;
+						return searchNode(node, key);
+					}else{
+						return true
+					}
+				}
+			}
+
+			// 移除值，这个地方有点恶心，不写了。
+			this.remove = function(key){
+
+			}
+		}
+	</script>
+</body>
+</html>

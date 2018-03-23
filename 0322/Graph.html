@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>图</title>
+</head>
+<body>
+	<script type="text/javascript" src="./Dictionary.js"></script>
+	<script type="text/javascript">
+		// 图是由G=(V,E)来表示的
+		// V： 一组顶点
+		// E：一组边，连接V中的顶点
+		function Graph(){
+			var vertices = [];
+			var adjList = new Dictionary();  // 采用字典储存来表示邻接表
+			
+			// 这个添加顶点的函数
+			this.addVertex = function(v){
+				vertices.push(v);
+				adjList.set(v, []);
+			}
+			// 这个添加边的函数
+			this.addEdeg = function(v, e){
+				adjList.get(v).push(e);
+				adjList.get(e).push(v);
+			}	
+			// 这个输出的函数
+			// 首先遍历顶点，然后遍历顶点的边，之后输出
+			this.toString = function(){
+				var s = '';
+				for (var i = 0, len = vertices.length; i < len; i++){
+					s += vertices[i] + ' -> ';
+					var neighbors = adjList.get(vertices[i]);
+					for (var j = 0, len = neighbors.length; j < len; j++){
+						s += neighbors[j] + ' ';
+					}
+					s += '\n'
+				}
+				return s
+			}
+		}
+
+		var graph = new Graph();
+		var myVertices = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I'];
+		for(var i=0,len=myVertices.length;i<len;i++){
+				graph.addVertex(myVertices[i])
+
+		}
+		graph.addEdeg('A','B')
+		graph.addEdeg('A','C')
+		graph.addEdeg('A','D')
+		graph.addEdeg('C','D')
+		graph.addEdeg('C','G')
+		graph.addEdeg('D','G')
+		graph.addEdeg('D','H')
+		graph.addEdeg('B','E')
+		graph.addEdeg('B','F')
+		graph.addEdeg('E','I')
+		console.log(graph.toString())
+	</script>
+</body>
+</html>
