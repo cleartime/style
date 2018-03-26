@@ -10,6 +10,7 @@ function ArrayList(){
 		return arr.join()
 	}
 	// 冒泡排序
+	// 其实就是第一个和第二个对比，然后再和第三个对比，谁小就不动，谁大就往后排
 	this.bubbleSort = function(){
 		let len = arr.length;
 		// 这个外层循环表示总共有多少轮，
@@ -35,6 +36,31 @@ function ArrayList(){
 					[arr[j],arr[j+1]] = [arr[j+1], arr[j]];
 					console.log('交换的顺序为:'+arr)
 				}
+			}
+		}
+	}
+
+
+	// 选择排序
+	// 循环的时候每次只找最小的放到最前面
+	this.selectionSort = function(){
+		let len = arr.length;
+		let min = '';
+		// 外层循环到倒数第二层，因为内层会循环到最后一层
+		for(let i = 0; i < len-1; i++){
+			// 默认第一层就有最小值，其实就是第一个值
+			min = i;
+			// 内层从当前层循环到最后一层
+			for(let j = i; j < len; j++){
+				// 判断当前循环有没有比上一层小的，如果有的判断这个是这层最小的
+				if(arr[j] < arr[min]){
+					min = j
+				}	
+			}
+			// 判断是不是当前层,也就是判断当前循环的时候最小值有没有改变,没有就不交换
+			if(min !== i){
+				[arr[i],arr[min]] = [arr[min], arr[i]];
+				console.log('交换的顺序为:'+arr)
 			}
 		}
 	}
