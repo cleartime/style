@@ -147,7 +147,7 @@
 	
 	exports.default = {
 	  data: {
-	    title: '示例页面'
+	    title: '示例6页面'
 	  },
 	  routeDetail: function routeDetail() {
 	    _system2.default.push({

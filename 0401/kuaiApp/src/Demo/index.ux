@@ -35,11 +35,11 @@
 
   export default {
     data: {
-      title: '示例页面'
+      title: '示例6页面'
     },
-    routeDetail () {
+    routeDetail() {
       // 跳转到应用内的某个页面，router用法详见：文档->接口->页面路由
-      router.push ({
+      router.push({
         uri: '/DemoDetail'
       })
     }

@@ -122,7 +122,7 @@
 	
 	exports.default = {
 	  data: {
-	    text: '欢迎打开详情页'
+	    text: '欢迎打开详情页2'
 	  },
 	  onMenuPress: function onMenuPress() {
 	    this.$app.showMenu();
