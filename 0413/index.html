@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<script type="text/javascript">
+		// 数组扁平化
+		function flattenDepth(arr){
+			let str = '';
+			for(let i = 0,len = arr.length;i<len;i++){
+				if(arr[i] instanceof Array){
+					str += flattenDepth(arr[i])
+				}else{
+					str += arr[i]
+				}
+			}
+			return str
+		}
+
+
+		var a = flattenDepth([1,2,3,['a','b','c',[1,3,['w',3]],'d'],1,3,1])
+		// console.log(a)
+	
+
+		// 还可以使用这个方法   [].join(',').split(',')
+		// join把数组中的所有元素转换为一个字符串，再用split转化成数组
+		
+
+
+		// 实现个bind函数
+		let obj = {
+			a: 1,
+			b: function(){
+				console.log(this.a)
+			}
+		}
+		let test = {
+			a: 2
+		}
+		Function.prototype.bind = function(obj){
+			let _this = this
+			return function(...arr){
+				return _this.apply(obj,arr)
+			}
+		}
+		// obj.b.bind(test)()
+
+
+		// 数组去重
+		function ArrayDeduplication(arr){
+			if(!arr instanceof Array){
+				alert('不是数组')
+				return
+			}
+			let newarr = new Set(arr);
+			return [...newarr]
+		}
+	// console.log(ArrayDeduplication([1,1,1,1,21312,3,12,3]))
+
+		// 对象去重
+		function ObjectDeduplication(...obj){
+			console.log(obj)
+			if(!obj instanceof Object){
+				alert('不是对象')
+				return
+			}
+			let newarr = new WeakSet(obj);
+			console.log(newarr)
+			// return [...newarr]
+		}
+
+		var obj1 = new Proxy({}, {
+		  get: function (target, key, receiver) {
+		    console.log(`getting ${key}!`);
+		    return Reflect.get(target, key, receiver);
+		  },
+		  set: function (target, key, value, receiver) {
+		    console.log(`setting ${key}!`);
+		    return Reflect.set(target, key, value, receiver);
+		  }
+		});
+		console.log(obj1)
+
+	
+	</script>
+</body>
+</html>
