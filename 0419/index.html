@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		body{
+			width: 100vw;
+			height: 100vh;
+		}
+	</style>
+</head>
+<body>
+	<script type="text/javascript">
+		// 防抖 延迟执行版
+		function debounce(cb,delay){
+			var time = null;
+			return function(...arg){
+				var _this = this;
+				if(time)clearTimeout(time)
+				time = setTimeout(function() {
+					cb.apply(_this, arg)
+				}, delay);
+				
+			}
+		}
+		// 防抖 立即执行版
+		function debounce1(cb,delay){
+			var time = null
+			var isTime = false
+			return function(...arg){
+				var _this = this;
+				clearTimeout(time)
+				if(!time && !isTime){
+					isTime = true
+					cb.apply(_this,arg)
+				}	
+				time = setTimeout(function(){
+					isTime = false
+					time = null
+				},delay)
+			}
+		}
+		// 节流 时间戳版
+		function throttle(cb,delay){
+			var fdata = Date.now();
+			return function(...arg){
+				var edata = Date.now();
+				if( edata - fdata >= delay){
+					cb.apply(this, arg)
+					fdata = edata
+				}
+				
+			}
+		}
+		// 节流 定时器版
+		function throttle1(cb,delay){
+			var time = null;
+			var fdata = Date.now();
+			return function(...arg){
+				var _this = this;
+				if(!time){
+					time = setTimeout(function(){
+						cb.apply(this, arg)
+						time = null
+					}, delay)
+				}
+			}
+		}
+		// 节流 立即执行版
+		function throttle2(cb,delay){
+			var succ = true;
+			return function(...arg){
+				if( succ ){
+					cb.apply(this, arg)
+					succ = false
+					setTimeout(function(){
+						succ = true
+					}, delay)
+				}
+			}
+		}
+
+		document.body.addEventListener('touchmove', throttle2(function(e) {
+			console.log(e)
+		}, 1000, true))
+	</script>
+</body>
+</html>
