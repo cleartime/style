@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		body{
+			width: 100vw;
+			height: 100vh;
+		}
+	</style>
+</head>
+<body>
+	<script type="text/javascript">
+		function jieliu(cb, delay){
+			var fdata = Date.now();
+			return function(...arg){
+				var edata = Date.now();
+				if(edata-fdata>delay){
+					cb.apply(this,arg)
+					fdata = edata
+				}
+			}
+		}
+		document.addEventListener('touchmove',jieliu(function(e){
+			console.log(e)
+		}),1000)
+	</script>
+</body>
+</html>
