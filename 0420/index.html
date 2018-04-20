@@ -21,9 +21,27 @@
 				}
 			}
 		}
-		document.addEventListener('touchmove',jieliu(function(e){
+
+
+		function fangdou(cb, delay){
+			var time = null
+			return function(...arg){
+				var data = Date.now();
+				var _this = this;
+				if(time){
+					clearTimeout(time)
+				}
+				time = setTimeout(function(){
+					cb.apply(_this,arg)
+				},delay)
+			}
+		}
+
+
+		function a(e){
 			console.log(e)
-		}),1000)
+		}
+		document.addEventListener('touchmove',fangdou(a,1000))
 	</script>
 </body>
 </html>
