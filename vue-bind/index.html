@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<div id="app">
+		<input type="" name="" id="input" value="测试" oninput="change(event)">
+		<p id="p"></p>
+	</div>
+	<script type="text/javascript">
+		var input = document.getElementById('input')
+		function change(e){
+			g.data.value = input.value
+		}
+		function Gxx(options){
+			this.options = options;
+			this.el = options.el;
+			this.data = options.data
+			this.init();
+			return this
+		}
+		Gxx.prototype.init=function(){
+			Object.defineProperty(this.data,'value',{
+				get(val){
+					console.log(val)
+					return val
+				},
+				set(val){
+					document.getElementById('p').innerHTML = val
+					console.log(val)
+				}
+			})
+		}
+		var g = new Gxx({
+			el: '#app',
+			data:{
+				value: '123213'
+			},
+		})
+	</script>
+</body>
+</html>
