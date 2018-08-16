@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<script type="text/javascript">
+
+		function log(arg){
+			console.log(arg)
+		}
+		function lei(){
+			this.a = 1
+			this.b = 2
+			this.fn = function(){
+				alert(this.a)
+			}
+		}
+		// let sublei = new lei()
+		// sublei.a = 3
+		// sublei.fn()
+		var obj = new Object()
+		Object.defineProperty(obj,'a',{
+			value: '123213',
+			writable: true,
+			enumerable: true,
+			configurable: true
+		})
+
+		Object.defineProperties(obj,{
+			'a':{
+				value: 'ddd'
+			},
+			'b':{
+				value: 'ad',
+				writable: true
+			},
+			'c':{
+				value: 'cc',
+				writable: true
+			}
+		})
+
+
+
+		// new Promise(function(resolve){
+		// 	log(1)
+		// 	setTimeout(function(){
+		// 		log(2)
+		// 		resolve()
+		// 		log(3)
+		// 	})
+		// }).then(function(){
+		// 	throw new Error('fail')
+		// }).then(function(){
+		// 	log(4)
+		// }).then(function(){
+		// 	log(5)
+		// }, function(){
+		// 	log(6)
+		// }).then(function(){
+		// 	log(7)
+		// })
+		// log(8)
+
+		var myCar = {
+			name: 'car',
+			drive: function(){
+				log('aaa')
+			},
+			panic: function(){
+				log('bbb')
+			}
+		}
+		var youcar = Object.create(myCar)
+		log(youcar)
+	</script>
+</body>
+</html>
