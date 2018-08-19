@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<script type="text/javascript">
+		function A(){
+			this.name = 'a'
+		}
+		A.prototype.fn = function(){
+			console.log('fn')
+		}
+		// 1.继承第一种方法
+
+		// function B(){
+		// 	A.call(this)
+		// }
+		// var c = new B()
+		// console.log(c)
+
+
+		// 2.继承第二种方法
+
+		function B(){
+
+		}
+		B.prototype = new A()
+		var c = new B()
+		console.log(c)
+	</script>
+</body>
+</html>
