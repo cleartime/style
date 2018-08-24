@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+
+	</style>
+</head>
+<body>
+	<script type="text/javascript">
+		var a = [2,1,3,4,2]
+		function bubbleSort(arr){
+			var len = arr.length;
+			for(var i=0;i<len;i++){
+        		for(var j = 0;j<len-1-i;j++){
+        			if(arr[j]>arr[j+1]){
+        				[arr[j],arr[j+1]] = [arr[j+1], arr[j]]
+        			}
+        		}
+			}
+			return arr
+		}
+		// console.log(bubbleSort(a))
+
+		function selectionsort(arr){
+			var len = arr.length,min;
+			for(var i =0;i<len;i++){
+				min = i;
+			for(var j = i;j<len;j++){
+				if(arr[j]<arr[min]){
+					min = j
+				}
+			}
+				if(i !== min){
+					[arr[min],arr[i]] = [arr[i], arr[min]]
+				}
+			}
+			return arr
+		}
+       // console.log(selectionsort(a))
+ 		function insertSort(arr){
+ 			var len = arr.length,i;
+ 			for(var i=0;i<len;i++){
+ 				
+ 			}
+ 		}
+	</script>
+</body>
+</html>
