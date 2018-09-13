@@ -53,5 +53,5 @@ function __chunk(array, size) {
   return result
 }
 
-log(__chunk(['a', 'b', 'c', 'd'], 1))
+// log(__chunk(['a', 'b', 'c', 'd'], 1))
 
