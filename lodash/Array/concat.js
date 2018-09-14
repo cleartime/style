@@ -31,16 +31,19 @@ function _concat(...arg){
 
 
 function __concat() {
+  // 判断参数长度
   var length = arguments.length;
   if (!length) {
     return [];
   }
-  var args = Array(length - 1),
-      array = arguments[0],
-      index = length;
-
+  var args = Array(length - 1), // 参数
+      array = arguments[0],     // 第一个参数
+      index = length;           // 索引
+  // 判断长度为0就停止
   while (index--) {
+  // 复制参数导args中
     args[index - 1] = arguments[index];
   }
+  // 获取到了所有的参数然后都push到新数组中
   return arrayPush(Array.isArray(array) ? copyArray(array) : [array], baseFlatten(args, 1));
 }
