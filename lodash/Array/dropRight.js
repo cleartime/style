@@ -1,4 +1,4 @@
-/**
+ /*
  * 创建一个数组切片，其中包含从末尾删除的n个元素。
  * 例子如下
  */
@@ -23,7 +23,7 @@ function _dropRight(arr, size = arr.length) {
   const len = arr == null ? 0 : arr.length;
   return arr.slice(0,size)
 }
-log(dropRight([1, 2, 3]))
+// log(dropRight([1, 2, 3]))
 
 
 // 看源码
@@ -37,7 +37,8 @@ function drop(array, n=1) {
 }
 
 
-/**
+
+ /*
  * 总结
  * 1. 参数默认值代替函数体内做判断
  * 2. 获取长度要判断null值
