@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<script type="text/javascript">
+		let a = 5
+		let b = 10
+		let c
+		function Dep(target){
+			this.arr = []
+			let reb = function(){
+				if(target && !this.arr.includes(target)){
+					this.arr.push(target)
+				}
+			}
+			let red = function(){
+				this.arr.forEach(ran=>ran())
+			}
+			this.reb = reb
+			this.red = red
+		}
+		let target = function(){
+			c = a*b
+		}
+		let dep = new Dep(target)
+		dep.reb()
+		b = 5
+		dep.red()
+		console.log(c)
+	</script>
+</body>
+</html>
