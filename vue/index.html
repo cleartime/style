@@ -6,7 +6,7 @@
 <body>
 	<script type="text/javascript">
 		setInterval(()=>{
-			alert('收')
+			console.log('收哦')
 		},300000)
 		let data = {
 			price: 5,
@@ -27,32 +27,30 @@
 			this.depend = depend
 			this.notify = notify
 		}
-		let dep = new Dep()
-		watcher(function(){total = data.price * data.quantity})
-		function watcher(fn){
-			target = fn
-			dep.depend()
-			target = null
-		}
-		data.quantity = 5
-		dep.notify()
-		// console.log(total)
 		Object.keys(data).forEach(key=>{
 			let internalValue = data[key]
+			const dep = new Dep()
 			Object.defineProperty(data,key,{
 				get(){
+					dep.depend()
 					console.log(`Get ${key}:${internalValue}`)
 					return internalValue
 				},
 				set(newval){
 					console.log(`Set ${key} to:${newval}`)
 					internalValue = newval
+					dep.notify()
 				}
 			})
 		})
-	
-		total = data.price * data.quantity
-		data.price = 20
+		function watcher(fn){
+			target = fn
+			target()
+			target = null
+		}
+		watcher(function(){data.total = data.price * data.quantity})
+		data.price = 3
+		
 	</script>
 </body>
 </html>
