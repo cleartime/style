@@ -5,30 +5,35 @@
 </head>
 <body>
 	<script type="text/javascript">
-		let a = 5
-		let b = 10
-		let c
-		function Dep(target){
-			this.arr = []
-			let reb = function(){
-				if(target && !this.arr.includes(target)){
-					this.arr.push(target)
+		let data = {
+			price: 5,
+			quantity: 10
+		}
+		let target = null
+		let total
+		function Dep(){
+			this.subscribers = []
+			let depend = function(){
+				if(target && !this.subscribers.includes(target)){
+					this.subscribers.push(target)
 				}
 			}
-			let red = function(){
-				this.arr.forEach(ran=>ran())
+			let notify = function(){
+				this.subscribers.forEach(ran=>ran())
 			}
-			this.reb = reb
-			this.red = red
+			this.depend = depend
+			this.notify = notify
 		}
-		let target = function(){
-			c = a*b
+		let dep = new Dep()
+		watcher(function(){total = data.price * data.quantity})
+		function watcher(fn){
+			target = fn
+			dep.depend()
+			target = null
 		}
-		let dep = new Dep(target)
-		dep.reb()
-		b = 5
-		dep.red()
-		console.log(c)
+		data.quantity = 5
+		dep.notify()
+		console.log(total)
 	</script>
 </body>
 </html>
