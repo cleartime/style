@@ -1,0 +1,3 @@
+{
+  "presets": ["env", "transform-decorators-legacy"]
+}

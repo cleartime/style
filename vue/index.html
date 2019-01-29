@@ -14,7 +14,7 @@
 		}
 		let target = null
 		let total
-		function Dep(){
+		function Dep(){ 
 			this.subscribers = []
 			let depend = function(){
 				if(target && !this.subscribers.includes(target)){
@@ -50,7 +50,7 @@
 		}
 		watcher(function(){data.total = data.price * data.quantity})
 		data.price = 3
-		
+
 	</script>
 </body>
 </html>
